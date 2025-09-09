@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap');
+
+/* Reutilizando as variáveis de cor da tela inicial para consistência */
+:root {
+    --primary-color: #3451BA;
+    --second-color: #8193D4;
+    --third-color: #111B62;
+    --forty-color: #130f90;
+    --text-color: #F1F2FA;
+    --background-color: #f0f2f5;
+    --card-background: #ffffff;
+    --text-dark: #333;
+    --status-ok: #28a745;
+    --status-atrasado: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-dark);
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header-ap {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.header-ap h1 {
+    flex-grow: 1; /* Faz o H1 ocupar o espaço e se centralizar */
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.back-button {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    text-decoration: none;
+    position: absolute; /* Posição absoluta para fácil controle */
+    left: 15px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.info-card, .status-card {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h2, .status-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--third-color);
+    border-bottom: 2px solid var(--second-color);
+    padding-bottom: 10px;
+}
+
+.info-item, .status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-item:last-child, .status-item:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: 500;
+    color: #555;
+}
+
+.value {
+    font-weight: 400;
+    text-align: right;
+}
+
+.status-value {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o ícone e o texto */
+    font-weight: 500;
+}
+
+.status-ok {
+    color: var(--status-ok);
+}
+
+.status-atrasado {
+    color: var(--status-atrasado);
+}

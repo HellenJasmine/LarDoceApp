@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style_ap2.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Apartamento 02</title>
+</head>
+<body>
+    
+    <div class="container">
+        <header class="header-ap">
+            <a href="tela_inicial.html" class="back-button"><i class="fa-solid fa-arrow-left"></i></a>
+            <h1>Apartamento 02</h1>
+        </header>
+
+        <main class="content">
+            <div class="info-card">
+                <h2><i class="fa-solid fa-circle-info"></i> Detalhes do Imóvel</h2>
+                <div class="info-item">
+                    <span class="label">Ocupante:</span>
+                    <span class="value">Maria Clara Souza</span>
+                </div>
+                
+                <div class="info-item">
+                    <span class="label">Data de Entrada:</span>
+                    <span class="value">15/03/2024</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Localização:</span>
+                    <span class="value">Rua das Flores, 123, Centro</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Valor do Aluguel:</span>
+                    <span class="value">R$ 1.250,00</span>
+                </div>
+                 <div class="info-item">
+                    <span class="label">Contrato Equatorial:</span>
+                    <span class="value">98765432-1</span>
+                </div>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-header">
+                    <h2><i class="fa-solid fa-dollar-sign"></i> Pagamentos de Aluguel</h2>
+                    <button class="btn-add" id="btnAddAluguel">+ Cadastrar</button>
+                </div>
+                <div class="payment-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mês</th>
+                                <th>Status</th>
+                                <th>Data Pag.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="aluguel-table-body">
+                            <tr>
+                                <td>Agosto</td>
+                                <td><span class="status-badge status-ok">Pago</span></td>
+                                <td>05/08/2025</td>
+                            </tr>
+                            <tr>
+                                <td>Julho</td>
+                                <td><span class="status-badge status-ok">Pago</span></td>
+                                <td>05/07/2025</td>
+                            </tr>
+                            <tr>
+                                <td>Junho</td>
+                                <td><span class="status-badge status-pendente">Pendente</span></td>
+                                <td>--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+             <div class="payment-card">
+                <div class="payment-header">
+                    <h2><i class="fa-solid fa-bolt"></i> Pagamentos de Energia</h2>
+                    <button class="btn-add" id="btnAddEnergia">+ Cadastrar</button>
+                </div>
+                <div class="payment-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mês</th>
+                                <th>Status</th>
+                                <th>Data Pag.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="energia-table-body">
+                            <tr>
+                                <td>Agosto</td>
+                                <td><span class="status-badge status-ok">Pago</span></td>
+                                <td>15/08/2025</td>
+                            </tr>
+                            <tr>
+                                <td>Julho</td>
+                                <td><span class="status-badge status-ok">Pago</span></td>
+                                <td>14/07/2025</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="payment-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Cadastrar Pagamento</h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="month-select">Mês de Referência</label>
+                        <select id="month-select" required>
+                            <option value="Janeiro">Janeiro</option>
+                            <option value="Fevereiro">Fevereiro</option>
+                            <option value="Março">Março</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Maio">Maio</option>
+                            <option value="Junho">Junho</option>
+                            <option value="Julho">Julho</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Setembro">Setembro</option>
+                            <option value="Outubro">Outubro</option>
+                            <option value="Novembro">Novembro</option>
+                            <option value="Dezembro">Dezembro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-date">Data do Pagamento</label>
+                        <input type="date" id="payment-date" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Salvar Pagamento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elementos do Modal
+        const modal = document.getElementById('payment-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const closeModalButton = document.querySelector('.close-button');
+        const paymentForm = document.getElementById('payment-form');
+        const monthSelect = document.getElementById('month-select');
+        const dateInput = document.getElementById('payment-date');
+
+        // Botões para abrir o modal
+        const btnAddAluguel = document.getElementById('btnAddAluguel');
+        const btnAddEnergia = document.getElementById('btnAddEnergia');
+
+        // Corpos das tabelas
+        const aluguelTableBody = document.getElementById('aluguel-table-body');
+        const energiaTableBody = document.getElementById('energia-table-body');
+        
+        let currentPaymentType = ''; // Variável para saber qual tipo de pagamento está sendo cadastrado
+
+        // Função para abrir o modal
+        const openModal = (type) => {
+            currentPaymentType = type;
+            modalTitle.textContent = `Cadastrar Pagamento de ${type === 'aluguel' ? 'Aluguel' : 'Energia'}`;
+            paymentForm.reset(); // Limpa o formulário
+            modal.style.display = 'flex';
+        };
+
+        // Função para fechar o modal
+        const closeModal = () => {
+            modal.style.display = 'none';
+        };
+
+        // Event Listeners para abrir o modal
+        btnAddAluguel.addEventListener('click', () => openModal('aluguel'));
+        btnAddEnergia.addEventListener('click', () => openModal('energia'));
+
+        // Event Listeners para fechar o modal
+        closeModalButton.addEventListener('click', closeModal);
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) { // Fecha se clicar fora do conteúdo
+                closeModal();
+            }
+        });
+
+        // Event Listener para o formulário
+        paymentForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Impede o recarregamento da página
+
+            const month = monthSelect.value;
+            const rawDate = dateInput.value; // Formato AAAA-MM-DD
+            
+            // Formata a data para DD/MM/AAAA
+            const dateParts = rawDate.split('-');
+            const paymentDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+
+            // Cria a nova linha da tabela
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${month}</td>
+                <td><span class="status-badge status-ok">Pago</span></td>
+                <td>${paymentDate}</td>
+            `;
+
+            // Adiciona a linha na tabela correta
+            if (currentPaymentType === 'aluguel') {
+                aluguelTableBody.prepend(newRow); // prepend adiciona no início
+            } else {
+                energiaTableBody.prepend(newRow);
+            }
+
+            closeModal(); // Fecha o modal após adicionar
+        });
+    </script>
+</body>
+</html>
